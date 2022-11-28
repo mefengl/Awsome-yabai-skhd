@@ -6,12 +6,32 @@ from: https://blog.dsubachev.com/install-a-tiling-window-manager-on-your-mac/
 ## yabai
 ```bash
 #!/usr/bin/env sh
-
-yabai -m config focus_follows_mouse          on
+#2 try
+##0.5 label space
+yabai -m space 1 --label mole
+yabai -m space 2 --label git
+yabai -m space 3 --label shell
+yabai -m space 4 --label try
+yabai -m space 5 --label xxx
+yabai -m space 6 --label del
+yabai -m space 7 --label info
+yabai -m space 8 --label more
+yabai -m space 9 --label awsome
+yabai -m space 10 --label dev
+# sync mouse and focus
+yabai -m config focus_follows_mouse autofocus
 yabai -m config mouse_follows_focus          on
+# old window occupies more? now is default value 0.5
+yabai -m config split_ratio 0.5
 
+# borders
 yabai -m config window_border                on
+yabai -m config window_shadow                on
+yabai -m config window_border_width          6
+yabai -m config active_window_border_color   0xffff3050
+yabai -m config normal_window_border_color   0xffaaaaaa
 
+# general space settings
 yabai -m config layout                       bsp
 yabai -m config top_padding                  5
 yabai -m config bottom_padding               5
@@ -19,17 +39,27 @@ yabai -m config left_padding                 5
 yabai -m config right_padding                5
 yabai -m config window_gap                   06
 
-# prevent border from being under the active window
-yabai -m config active_window_border_topmost on
-yabai -m config window_shadow                on
-yabai -m config window_opacity               off
-yabai -m config window_border_width          6
-yabai -m config active_window_border_color   0xffff3050
-yabai -m config normal_window_border_color   0xffaaaaaa
+# yabai auto focus to previously focused window after killing a window
+function record_display_id {
+  display_id=$(yabai -m query --windows --window | jq '.display')
+  python $HOME/.config/yabai/autofocus/display_focus.py write $display_id
+}
+function focus_current_display {
+  yabai -m display --focus $(python $HOME/.config/yabai/autofocus/display_focus.py read)
+}
+yabai -m signal --add event=window_focused action="${functions[record_display_id]}"
+yabai -m signal --add event=application_front_switched action="${functions[record_display_id]}"
+yabai -m signal --add event=window_destroyed action="${functions[focus_current_display]}"
+yabai -m signal --add event=application_terminated action="${functions[focus_current_display]}"
 ```
 
 ## skhd
 ```bash
+#2 try
+
+# meta operation
+ctrl + alt + cmd - r : brew services restart yabai
+
 # Navigation
 alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
@@ -37,7 +67,7 @@ alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
 
 # ctrl + alt used to move window
-## windows swap
+## swap windows
 shift + alt - h : yabai -m window --warp west
 shift + alt - j : yabai -m window --warp south
 shift + alt - k : yabai -m window --warp north
