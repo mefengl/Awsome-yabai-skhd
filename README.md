@@ -19,13 +19,15 @@ yabai -m space 8 --label more
 yabai -m space 9 --label awsome
 yabai -m space 10 --label dev
 # sync mouse and focus
-yabai -m config focus_follows_mouse autofocus
+yabai -m config focus_follows_mouse          off
+yabai -m config focus_follows_mouse          autofocus
 yabai -m config mouse_follows_focus          on
 # old window occupies more? now is default value 0.5
 yabai -m config split_ratio 0.5
 
 # borders
 yabai -m config window_border                on
+yabai -m config active_window_border_topmost on
 yabai -m config window_shadow                on
 yabai -m config window_border_width          6
 yabai -m config active_window_border_color   0xffff3050
