@@ -58,8 +58,16 @@ yabai -m signal --add event=application_terminated action="${functions[focus_cur
 ```bash
 #2 try
 
-# meta operation
+# with key ctrl + alt + cmd
+ctrl + alt + cmd - i : open -na iTerm
+ctrl + alt + cmd - b : open -na Google\ Chrome
+ctrl + alt + cmd - g : open -na GitHub\ Desktop
+ctrl + alt + cmd - c : open -na Visual\ Studio\ Code
 ctrl + alt + cmd - r : brew services restart yabai
+
+# meta operation
+ctrl + alt + cmd - space  : yabai -m space --layout bsp
+ctrl + alt + cmd - return : yabai -m space --mirror y-axis
 
 # Navigation
 alt - h : yabai -m window --focus west
@@ -73,6 +81,13 @@ shift + alt - h : yabai -m window --warp west
 shift + alt - j : yabai -m window --warp south
 shift + alt - k : yabai -m window --warp north
 shift + alt - l : yabai -m window --warp east
+## stack windows
+ctrl + alt - h : yabai -m window --stack west
+ctrl + alt - j : yabai -m window --stack south
+ctrl + alt - k : yabai -m window --stack north
+ctrl + alt - l : yabai -m window --stack east
+ctrl + alt - n : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+ctrl + alt - p : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
 ## window => space
 alt - 1 : yabai -m window --space 1
 alt - 2 : yabai -m window --space 2
@@ -85,26 +100,5 @@ alt - 8 : yabai -m window --space 8
 alt - 9 : yabai -m window --space 9
 alt - 0 : yabai -m window --space 10
 
-# shift + alt used to custom window itself
-## Resize windows
-ctrl + alt - h : \
-    yabai -m window --resize left:-100:0 ; \
-    yabai -m window --resize right:-100:0
-ctrl + alt - j : \
-    yabai -m window --resize bottom:0:100 ; \
-    yabai -m window --resize top:0:100
-ctrl + alt - k : \
-    yabai -m window --resize top:0:-100 ; \
-    yabai -m window --resize bottom:0:-100
-ctrl + alt - l : \
-    yabai -m window --resize right:100:0 ; \
-    yabai -m window --resize left:100:0
-
-# Change desktop
-# use system's mission control keyboard shortcut
-# ctrl - 1 : yabai -m space --focus 1
-# ctrl - 2 : yabai -m space --focus 2
-# ctrl - 3 : yabai -m space --focus 3
-# ctrl - 4 : yabai -m space --focus 4
-# ctrl - 5 : yabai -m space --focus 5
+## Resize window: just use mouse
 ```
