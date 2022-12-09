@@ -60,7 +60,7 @@ yabai -m signal --add event=application_terminated action="${functions[focus_cur
 
 # with key ctrl + alt + cmd
 ctrl + alt + cmd - i : open -na iTerm
-ctrl + alt + cmd - b : open -na Google\ Chrome
+ctrl + alt + cmd - 1 : open -na Google\ Chrome
 ctrl + alt + cmd - g : open -na GitHub\ Desktop
 ctrl + alt + cmd - c : open -na Visual\ Studio\ Code
 ctrl + alt + cmd - r : brew services restart yabai
@@ -74,6 +74,7 @@ alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
+alt - n : yabai -m window --focus stack.next || yabai -m window --focus stack.first
 
 # ctrl + alt used to move window
 ## swap windows
@@ -82,12 +83,10 @@ shift + alt - j : yabai -m window --warp south
 shift + alt - k : yabai -m window --warp north
 shift + alt - l : yabai -m window --warp east
 ## stack windows
-ctrl + alt - h : yabai -m window --stack west
-ctrl + alt - j : yabai -m window --stack south
-ctrl + alt - k : yabai -m window --stack north
-ctrl + alt - l : yabai -m window --stack east
-ctrl + alt - n : yabai -m window --focus stack.next || yabai -m window --focus stack.first
-ctrl + alt - p : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+ctrl + alt - h : yabai -m window --stack west || yabai -m window --stack east
+ctrl + alt - j : yabai -m window --stack south || yabai -m window --stack north
+ctrl + alt - k : yabai -m window --stack north || yabai -m window --stack south
+ctrl + alt - l : yabai -m window --stack east || yabai -m window --stack west
 ## window => space
 alt - 1 : yabai -m window --space 1
 alt - 2 : yabai -m window --space 2
@@ -101,4 +100,5 @@ alt - 9 : yabai -m window --space 9
 alt - 0 : yabai -m window --space 10
 
 ## Resize window: just use mouse
+
 ```
